@@ -3,10 +3,10 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>关于 | Gridea</title>
-<link rel="shortcut icon" href="https://fff.github.io/favicon.ico?v=1633946212852">
+<link rel="shortcut icon" href="https://fafafafafafafa.github.io/favicon.ico?v=1633962055324">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
-<link rel="stylesheet" href="https://fff.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于 | Gridea - Atom Feed" href="https://fff.github.io/atom.xml">
+<link rel="stylesheet" href="https://fafafafafafafa.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="关于 | Gridea - Atom Feed" href="https://fafafafafafafa.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
@@ -27,8 +27,8 @@
     <div class="main">
       <div class="main-content">
         <div class="site-header">
-  <a href="https://fff.github.io">
-  <img class="avatar" src="https://fff.github.io/images/avatar.png?v=1633946212852" alt="">
+  <a href="https://fafafafafafafa.github.io">
+  <img class="avatar" src="https://fafafafafafafa.github.io/images/avatar.png?v=1633962055324" alt="">
   </a>
   <h1 class="site-title">
     Gridea
@@ -124,10 +124,36 @@
         
 
         
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '',
+    clientSecret: '',
+    repo: '',
+    owner: '',
+    admin: [''],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
 
         <div class="site-footer">
   Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="https://fff.github.io/atom.xml" target="_blank">
+  <a class="rss" href="https://fafafafafafafa.github.io/atom.xml" target="_blank">
     <i class="ri-rss-line"></i> RSS
   </a>
 </div>
