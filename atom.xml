@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://fafafafafafafa.github.io/</id>
     <title>FFF&apos;s Blog</title>
-    <updated>2022-10-08T12:06:14.510Z</updated>
+    <updated>2022-10-08T15:36:53.333Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://fafafafafafafa.github.io/"/>
     <link rel="self" href="http://fafafafafafafa.github.io/atom.xml"/>
@@ -10,6 +10,102 @@
     <logo>http://fafafafafafafa.github.io/images/avatar.png</logo>
     <icon>http://fafafafafafafa.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, FFF&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[Git使用小结]]></title>
+        <id>http://fafafafafafafa.github.io/post/git-shi-yong-xiao-jie/</id>
+        <link href="http://fafafafafafafa.github.io/post/git-shi-yong-xiao-jie/">
+        </link>
+        <updated>2022-10-08T12:06:35.000Z</updated>
+        <content type="html"><![CDATA[<p>下面列举一些常用的语句，方便查询。<br>
+<strong>创建git仓库</strong></p>
+<pre><code>git init
+</code></pre>
+<p>创建用户信息</p>
+<pre><code>git config --global user.email/name &quot;myemail/myname&quot;
+</code></pre>
+<p><strong>查询git配置</strong></p>
+<pre><code>cat ~/.gitconfig
+</code></pre>
+<p><strong>查看文件状态</strong></p>
+<pre><code>git status -s
+</code></pre>
+<p><strong>添加索引</strong></p>
+<pre><code>git add doc.txt
+</code></pre>
+<p><strong>提交快照,-m&quot;&quot;内添加说明，方便管理</strong></p>
+<pre><code>git commit -m&quot;V1&quot;
+</code></pre>
+<p><strong>从索引中删除</strong></p>
+<pre><code>git rm doc.txt 
+</code></pre>
+<p><strong>上传,一般远程仓库名默认为origin</strong></p>
+<pre><code>git push origin master
+</code></pre>
+<p><strong>与远程仓库同步</strong></p>
+<pre><code>git pull origin master
+</code></pre>
+<p><strong>从远程仓库克隆</strong></p>
+<pre><code>git clone Https/SSH
+</code></pre>
+<p><strong>查看历史记录</strong></p>
+<pre><code>git reflog 
+</code></pre>
+<p>查看提交日志，从最近到最远</p>
+<pre><code>git log
+</code></pre>
+<p><strong>版本回溯</strong></p>
+<pre><code># 返回上一个提交状态，上上一个就是HEAD^^
+git reset --hard HEAD^
+# 跳到指定位置
+git reset --hard HEAD@{X}
+or
+git reset --hard 地址
+</code></pre>
+<hr>
+<h1 id="git小结">git小结</h1>
+<h2 id="什么是git仓库">什么是git仓库?</h2>
+<p>git仓库分为远程仓库和本地仓库，远程仓库是为了多人共享，合作的云数据库；而本地数据库是在个人电脑上建立的数据库，方便个人使用。<br>
+远程数据库和本地数据库的关系如图所示，每个人可以在个人电脑上编辑内容，然后上传到远程数据库。还可以从远程数据库获取其他人修改的内容，下载到本地数据库。<br>
+<img src="http://fafafafafafafa.github.io//post-images/1665238883903.png" alt="" loading="lazy"></p>
+<h2 id="如何使用git进行版本管理">如何使用git进行版本管理?</h2>
+<p>git使用流程可以简述为：创建本地git仓库--&gt;编辑内容--&gt;添加索引--&gt;提交快照--&gt;建立远程git仓库--&gt;上传/下载，具体流程参考猴子都懂的github入门：https://backlog.com/git-tutorial/cn/。<br>
+<strong>文件状态标记</strong><br>
+Git有三种状态：已修改（modified）、已暂存（staged）和已提交（committed）。</p>
+<ul>
+<li>已修改：表示修改了文件，但还没保存到数据库</li>
+<li>已暂存：表示对一个已经修改的文件当前版本做了标记，使之包含在下次提交的快照中</li>
+<li>已提交：表示数据已经安全的保存在本地数据库中</li>
+</ul>
+<p>状态标记符有：??（新添加的文件）、A（新添加进暂存区的文件）、M（修改过的文件）</p>
+<ul>
+<li>在本地数据库新建一个文件helloworld.txt，查看文件状态<br>
+<img src="http://fafafafafafafa.github.io//post-images/1665238890808.png" alt="" loading="lazy"></li>
+<li>添加进入暂存区后，状态标记为A（在下一次提交快照前，所有新添加的文件都会标记为A）<br>
+<img src="http://fafafafafafafa.github.io//post-images/1665238896227.png" alt="" loading="lazy"></li>
+<li>被修改的文件，根据M的位置有不同解释</li>
+</ul>
+<ol>
+<li>M前面有空格，说明文件在工作区被修改了，并且没有进暂存区。</li>
+<li>M在最左边，说明文件被修改了，并放进了暂存区。</li>
+<li>MM说明文件被修改放进暂存区后，又被修改了，且还没放进暂存区。</li>
+</ol>
+<p>对sample.txt进行修改，查看文件状态<br>
+<img src="http://fafafafafafafa.github.io//post-images/1665238909957.png" alt="" loading="lazy"><br>
+对sample.txt暂存，查看文件状态<br>
+<img src="http://fafafafafafafa.github.io//post-images/1665238916350.png" alt="" loading="lazy"><br>
+再对sample.txt进行修改，查看文件状态<br>
+<img src="http://fafafafafafafa.github.io//post-images/1665243317027.png" alt="" loading="lazy"><br>
+同理，对helloworld.txt进行修改，状态会变更为AM<br>
+<img src="http://fafafafafafafa.github.io//post-images/1665243324615.png" alt="" loading="lazy"><br>
+当所有文件放进缓存区后才能进行提交快照操作。</p>
+<p><strong>本地数据库和远程数据库同步</strong><br>
+提交快照，记得添加注释。<br>
+<img src="http://fafafafafafafa.github.io//post-images/1665243331676.png" alt="" loading="lazy"><br>
+查看提交日志记录。其中，HEAD-&gt;master 为本地数据库版本所在位置。origin/master 为远程数据库版本所在位置。<br>
+<img src="http://fafafafafafafa.github.io//post-images/1665243338944.png" alt="" loading="lazy"><br>
+数据上传。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[最大熵模型]]></title>
         <id>http://fafafafafafafa.github.io/post/zui-da-shang-mo-xing/</id>
