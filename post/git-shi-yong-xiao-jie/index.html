@@ -93,7 +93,8 @@
 <p>查看提交日志，从最近到最远</p>
 <pre><code>git log
 </code></pre>
-<p><strong>版本回溯</strong></p>
+<p><strong>版本回溯</strong><br>
+有soft，mix，hard三种模式。具体内容参考博客：https://blog.csdn.net/longintchar/article/details/81843048</p>
 <pre><code># 返回上一个提交状态，上上一个就是HEAD^^
 git reset --hard HEAD^
 # 跳到指定位置
@@ -106,7 +107,7 @@ git reset --hard 地址
 <h2 id="什么是git仓库">什么是git仓库?</h2>
 <p>git仓库分为远程仓库和本地仓库，远程仓库是为了多人共享，合作的云数据库；而本地数据库是在个人电脑上建立的数据库，方便个人使用。<br>
 远程数据库和本地数据库的关系如图所示，每个人可以在个人电脑上编辑内容，然后上传到远程数据库。还可以从远程数据库获取其他人修改的内容，下载到本地数据库。<br>
-<img src="http://fafafafafafafa.github.io//post-images/1665238883903.png" alt="" loading="lazy"></p>
+<img  src="file://C:/Users/14372/Documents/Gridea/post-images/1665238883903.png" height="400" width="600"></p>
 <h2 id="如何使用git进行版本管理">如何使用git进行版本管理?</h2>
 <p>git使用流程可以简述为：创建本地git仓库--&gt;编辑内容--&gt;添加索引--&gt;提交快照--&gt;建立远程git仓库--&gt;上传/下载，具体流程参考猴子都懂的github入门：https://backlog.com/git-tutorial/cn/。<br>
 <strong>文件状态标记</strong><br>
@@ -119,9 +120,9 @@ Git有三种状态：已修改（modified）、已暂存（staged）和已提交
 <p>状态标记符有：??（新添加的文件）、A（新添加进暂存区的文件）、M（修改过的文件）</p>
 <ul>
 <li>在本地数据库新建一个文件helloworld.txt，查看文件状态<br>
-<img src="http://fafafafafafafa.github.io//post-images/1665238890808.png" alt="" loading="lazy"></li>
+<img  src="file://C:/Users/14372/Documents/Gridea/post-images/1665238890808.png" height="400" width="600"></li>
 <li>添加进入暂存区后，状态标记为A（在下一次提交快照前，所有新添加的文件都会标记为A）<br>
-<img src="http://fafafafafafafa.github.io//post-images/1665238896227.png" alt="" loading="lazy"></li>
+<img  src="file://C:/Users/14372/Documents/Gridea/post-images/1665238896227.png" height="400" width="600"></li>
 <li>被修改的文件，根据M的位置有不同解释</li>
 </ul>
 <ol>
@@ -130,20 +131,39 @@ Git有三种状态：已修改（modified）、已暂存（staged）和已提交
 <li>MM说明文件被修改放进暂存区后，又被修改了，且还没放进暂存区。</li>
 </ol>
 <p>对sample.txt进行修改，查看文件状态<br>
-<img src="http://fafafafafafafa.github.io//post-images/1665238909957.png" alt="" loading="lazy"><br>
+<img  src="file://C:/Users/14372/Documents/Gridea/post-images/1665238909957.png" height="400" width="600"><br>
 对sample.txt暂存，查看文件状态<br>
-<img src="http://fafafafafafafa.github.io//post-images/1665238916350.png" alt="" loading="lazy"><br>
+<img  src="file://C:/Users/14372/Documents/Gridea/post-images/1665238916350.png" height="400" width="600"><br>
 再对sample.txt进行修改，查看文件状态<br>
-<img src="http://fafafafafafafa.github.io//post-images/1665243317027.png" alt="" loading="lazy"><br>
+<img  src="file://C:/Users/14372/Documents/Gridea/post-images/1665243317027.png" height="400" width="600"><br>
 同理，对helloworld.txt进行修改，状态会变更为AM<br>
-<img src="http://fafafafafafafa.github.io//post-images/1665243324615.png" alt="" loading="lazy"><br>
+<img  src="file://C:/Users/14372/Documents/Gridea/post-images/1665243324615.png" height="400" width="600"><br>
 当所有文件放进缓存区后才能进行提交快照操作。</p>
 <p><strong>本地数据库和远程数据库同步</strong><br>
 提交快照，记得添加注释。<br>
-<img src="http://fafafafafafafa.github.io//post-images/1665243331676.png" alt="" loading="lazy"><br>
+<img  src="file://C:/Users/14372/Documents/Gridea/post-images/1665243331676.png" height="400" width="600"><br>
 查看提交日志记录。其中，HEAD-&gt;master 为本地数据库版本所在位置。origin/master 为远程数据库版本所在位置。<br>
-<img src="http://fafafafafafafa.github.io//post-images/1665243338944.png" alt="" loading="lazy"><br>
+<img  src="file://C:/Users/14372/Documents/Gridea/post-images/1665243338944.png" height="400" width="600"><br>
 数据上传。</p>
+<h2 id="遇到的问题">遇到的问题</h2>
+<p>删除文件后通过git reset --hard 命令回滚到之前的commit，结果上传时报错。<br>
+<img  src="file://C:/Users/14372/Documents/Gridea/post-images/1665281093476.png" height="400" width="600"><br>
+reset可以将当前branch重置到另外一个commit，虽然hard 参数可以改变工作区的数据，很方便就能把删除的文件找回来，但是这也造成了危险，使得之前的工作区的数据被覆盖，所以慎用。而且，会使得当前head-&gt;master指向之前的commit，是不会被允许上传的，若强制上传，head-&gt;maste之后的commit都会消失。所以，正确步骤应该是：git reset (--mixed)回溯head(commit)和index（index暂存区），括号内可省略---&gt;git checkout doc.txt 将文件恢复到工作区---&gt;git reset 回溯到最新的head和index，再git push 上传就可以了。<br>
+具体步骤如下：</p>
+<ol>
+<li>本地数据库有文件sample.txt、sample2.txt和sample3.txt，删去sample.txt，提交快照并上传至远程数据库。</li>
+</ol>
+<div align="left">
+<img  src="file://C:/Users/14372/Documents/Gridea/post-images/1665288800801.png" height="400" width="600">
+<img  src="file://C:/Users/14372/Documents/Gridea/post-images/1665288804784.png" height="400" width="600">
+</div>
+2.  git reset回溯到前一个commit
+<img  src="file://C:/Users/14372/Documents/Gridea/post-images/1665289168554.png" height="400" width="600">
+3. 将文件恢复到工作区
+<img  src="file://C:/Users/14372/Documents/Gridea/post-images/1665289239506.png" height="400" width="600">
+4. git reset 回溯
+<img  src="file://C:/Users/14372/Documents/Gridea/post-images/1665289431350.png" height="400" width="600">
+<img  src="file://C:/Users/14372/Documents/Gridea/post-images/1665289437154.png" height="400" width="600">
 
                 </div>
             </article>
