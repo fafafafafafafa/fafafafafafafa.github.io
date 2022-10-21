@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>http://fafafafafafafa.github.io/</id>
     <title>FFF&apos;s Blog</title>
-    <updated>2022-10-09T06:03:22.646Z</updated>
+    <updated>2022-10-21T13:51:50.588Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="http://fafafafafafafa.github.io/"/>
     <link rel="self" href="http://fafafafafafafa.github.io/atom.xml"/>
@@ -10,6 +10,56 @@
     <logo>http://fafafafafafafa.github.io/images/avatar.png</logo>
     <icon>http://fafafafafafafa.github.io/favicon.ico</icon>
     <rights>All rights reserved 2022, FFF&apos;s Blog</rights>
+    <entry>
+        <title type="html"><![CDATA[list,narray,tensor 常用操作汇总]]></title>
+        <id>http://fafafafafafafa.github.io/post/listarraytensor-chang-yong-cao-zuo-hui-zong/</id>
+        <link href="http://fafafafafafafa.github.io/post/listarraytensor-chang-yong-cao-zuo-hui-zong/">
+        </link>
+        <updated>2022-10-21T12:50:32.000Z</updated>
+        <summary type="html"><![CDATA[<p>汇总了一些常用代码，方便查询。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>汇总了一些常用代码，方便查询。</p>
+<!-- more -->
+<p>list,narray 互相转换</p>
+<pre><code>a = [0, 1,  2, 3]
+# list --&gt; narray
+b = np.array(a)
+# narray --&gt; list 
+c = b.tolist()
+</code></pre>
+<p>tensor,narray 互相转换</p>
+<pre><code># narray --&gt; tensor 
+torch.from_numpy(ndarray)
+# list --&gt; narray
+tensor.numpy()
+</code></pre>
+<p>narray 维度变换</p>
+<pre><code>a1 = np.arange(12) # [0, 1, 2,...,11]
+# 将数组转换成特定维度
+a2 = a1.reshape(2,3,2)  # (2,3,2)
+# reshape也可以用于维度扩展和压缩
+a3 = a2.reshape(2,3,2,1)  # (2,3,2,1)
+# 坐标索引变换
+a4 = a2.transpose(0,2,1)  # (2,2,3)
+# 查看维度大小
+a4.shape
+</code></pre>
+<p>tensor维度变换</p>
+<pre><code>a1 = torch.rand(4,2,5,6)
+# 查看tensor维度 
+a1.shape
+# 转换成特定维度
+a2 = a1.reshape(4,2,-1)  # (4, 2, 30)
+# 维度变换
+a3 = torch.transpose(0,1)  # (2, 4, 30)
+# 维度拓展
+a4 = torch.unsqueeze(a3,1)  # (2, 1, 4, 30)
+# 维度压缩
+a5 = torch.squeeze(a4,1) # (2, 4, 30)
+
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Git使用小结]]></title>
         <id>http://fafafafafafafa.github.io/post/git-shi-yong-xiao-jie/</id>
